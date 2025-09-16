@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddsncyxx1r0lf"]
+
+[ext_resource type="Script" uid="uid://seqslelxoaow" path="res://Scenes/Enemies/soldier_A.gd" id="1_1uemn"]
+[ext_resource type="Texture2D" uid="uid://cu8ttflnu3c6p" path="res://Assets/Enemies/towerDefense_tile245.png" id="2_bxo4u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2cysy"]
+size = Vector2(21, 29)
+
+[node name="Soldier A" type="CharacterBody2D"]
+script = ExtResource("1_1uemn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bxo4u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_2cysy")
