@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=4 uid="uid://qp036h3frxg2"]
+[gd_scene load_steps=16 format=4 uid="uid://qp036h3frxg2"]
 
 [ext_resource type="Texture2D" uid="uid://c5rb6g0ymws0o" path="res://Assets/Tilesets/terrainTiles_default.png" id="1_bp0wf"]
 [ext_resource type="Texture2D" uid="uid://cl46ry2x8bee7" path="res://Assets/Props/treeBrown_large.png" id="2_kkfd8"]
 [ext_resource type="Texture2D" uid="uid://bnkcocahei0bm" path="res://Assets/Props/treeGreen_large.png" id="3_ufnsk"]
 [ext_resource type="Texture2D" uid="uid://bimjcwdtl815b" path="res://Assets/Props/crateMetal.png" id="4_g86u4"]
 [ext_resource type="Texture2D" uid="uid://ec6gjou0fcbx" path="res://Assets/Props/crateWood.png" id="5_o2go4"]
+[ext_resource type="PackedScene" uid="uid://dg0qdxkpw4k6g" path="res://Assets/Tower/GunT1.tscn" id="7_ufnsk"]
 [ext_resource type="Script" uid="uid://b2vhe1mo221xk" path="res://Scenes/Maps/PathSpawner.gd" id="9_4r0br"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4r0br"]
@@ -142,5 +143,14 @@ script = ExtResource("9_4r0br")
 autostart = true
 
 [node name="Towers" type="Node2D" parent="."]
+
+[node name="GunT1" parent="." instance=ExtResource("7_ufnsk")]
+position = Vector2(290, 421)
+
+[node name="GunT2" parent="." instance=ExtResource("7_ufnsk")]
+position = Vector2(578, 616)
+
+[node name="GunT3" parent="." instance=ExtResource("7_ufnsk")]
+position = Vector2(521, 84)
 
 [connection signal="timeout" from="PathSpawner/Timer" to="PathSpawner" method="_on_timer_timeout"]
