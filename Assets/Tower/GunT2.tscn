@@ -1,14 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://dg0qdxkpw4k6g"]
+[gd_scene load_steps=7 format=3 uid="uid://661770tkw1j7"]
 
-[ext_resource type="Script" uid="uid://ba12hvmfrlq7b" path="res://Scenes/Turrets/GunT1.gd" id="1_6hyt1"]
-[ext_resource type="Texture2D" uid="uid://de6fy6qki52a6" path="res://Assets/Tower/towerDefense_tile228.png" id="2_6hyt1"]
-[ext_resource type="Texture2D" uid="uid://cgpguwlccdhil" path="res://Assets/Tower/towerDefense_tile249.png" id="3_crcan"]
+[ext_resource type="Script" uid="uid://conciv8xijwnq" path="res://Scenes/Turrets/GunT2.gd" id="1_uemep"]
+[ext_resource type="Texture2D" uid="uid://bpugcr54pt5v7" path="res://Assets/Tower/towerDefense_tile180.png" id="2_uemep"]
+[ext_resource type="Texture2D" uid="uid://cbaywgsfmct8c" path="res://Assets/Tower/towerDefense_tile250.png" id="3_q6tqb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6hyt1"]
 size = Vector2(52, 56)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l2ixe"]
-radius = 259.49374
+radius = 194.01031
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hyt1"]
 bg_color = Color(0, 0, 0, 0.3137255)
@@ -17,22 +17,25 @@ corner_radius_top_right = 450
 corner_radius_bottom_right = 450
 corner_radius_bottom_left = 450
 
-[node name="GunT1" type="StaticBody2D"]
-script = ExtResource("1_6hyt1")
+[node name="GunT2" type="StaticBody2D"]
+script = ExtResource("1_uemep")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_6hyt1")
 
 [node name="GunBase" type="Sprite2D" parent="."]
-texture = ExtResource("2_6hyt1")
+texture = ExtResource("2_uemep")
 
 [node name="Turret" type="Sprite2D" parent="."]
-texture = ExtResource("3_crcan")
+texture = ExtResource("3_q6tqb")
 offset = Vector2(0, -12)
 
 [node name="Marker2D" type="Marker2D" parent="Turret"]
-position = Vector2(0, -42)
+position = Vector2(6, -42)
+
+[node name="Marker2D2" type="Marker2D" parent="Turret"]
+position = Vector2(-7, -42)
 
 [node name="TowerRadius" type="Area2D" parent="."]
 
@@ -42,10 +45,10 @@ shape = SubResource("CircleShape2D_l2ixe")
 [node name="BulletContainer" type="Node" parent="."]
 
 [node name="Area" type="Panel" parent="."]
-offset_left = -262.0
-offset_top = -261.0
-offset_right = 138.0
-offset_bottom = 139.0
+offset_left = -193.99998
+offset_top = -194.0
+offset_right = 102.18086
+offset_bottom = 104.13971
 scale = Vector2(1.3133868, 1.3047574)
 theme_override_styles/panel = SubResource("StyleBoxFlat_6hyt1")
 

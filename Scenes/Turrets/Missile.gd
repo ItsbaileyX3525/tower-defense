@@ -7,7 +7,7 @@ var bullet_damage = 2
 func _ready() -> void:
 	target_node = _find_closest_soldier()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not is_instance_valid(target_node):
 		target_node = _find_closest_soldier()
 

@@ -1,6 +1,101 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnt6dsxeenip6"]
+[gd_scene load_steps=9 format=3 uid="uid://cnt6dsxeenip6"]
 
 [ext_resource type="Script" uid="uid://dqjihj03hhix0" path="res://Scenes/ui.gd" id="1_jxero"]
+[ext_resource type="PackedScene" uid="uid://cm1ecc5b6ta7o" path="res://Scenes/T1TurrentUI.tscn" id="2_qdvrb"]
+[ext_resource type="Texture2D" uid="uid://cf454edfxwg6u" path="res://Assets/UI/arrow-left-svgrepo-com.svg" id="4_q7pk6"]
+
+[sub_resource type="Animation" id="Animation_smcll"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_m78vo"]
+resource_name = "move_in"
+length = 0.64
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.56666666),
+"transitions": PackedFloat32Array(1, 0.99999994),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(250, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.57),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.1415927, 6.2831855]
+}
+
+[sub_resource type="Animation" id="Animation_ryf15"]
+resource_name = "move_out"
+length = 0.64
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.56666666),
+"transitions": PackedFloat32Array(0.99999994, 1),
+"update": 0,
+"values": [Vector2(250, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.56),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.1415927]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mmixe"]
+_data = {
+&"RESET": SubResource("Animation_smcll"),
+&"move_in": SubResource("Animation_m78vo"),
+&"move_out": SubResource("Animation_ryf15")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2246s"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -27,3 +122,34 @@ grow_vertical = 2
 [node name="Panel" type="Panel" parent="CenterContainer"]
 custom_minimum_size = Vector2(250, 720)
 layout_mode = 2
+
+[node name="FlowContainer" type="FlowContainer" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_left = 14.0
+offset_right = 239.0
+offset_bottom = 720.0
+
+[node name="Control" parent="CenterContainer/Panel/FlowContainer" instance=ExtResource("2_qdvrb")]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(887, 364)
+scale = Vector2(0.109744586, 0.109744586)
+texture = ExtResource("4_q7pk6")
+
+[node name="slide" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mmixe")
+}
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 925.0
+offset_top = 319.0
+offset_right = 1025.0
+offset_bottom = 404.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_2246s")
+flat = true
+
+[connection signal="animation_finished" from="slide" to="." method="_on_slide_animation_finished"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,8 +1,10 @@
 extends Node2D
 
 var Bullet = preload("res://Scenes/Turrets/Missile.tscn")
-var bullet_damage = 5
+var bullet_damage = 3
 @onready var aim: Marker2D = $Turret/Marker2D
+@onready var aim2: Marker2D = $Turret/Marker2D2
+
 @onready var turret: Sprite2D = $Turret
 var enemies_in_range = []
 var curr
@@ -37,10 +39,20 @@ func _update_current_target():
 func _on_tower_radius_entered(body: Node2D) -> void:
 	if body.is_in_group("soldier"):
 		enemies_in_range.append(body)
-		var temp_bullet = Bullet.instantiate()
-		get_node("BulletContainer").call_deferred("add_child", temp_bullet)
-		temp_bullet.bullet_damage = bullet_damage
-		temp_bullet.global_position = aim.global_position
+
+		var temp_bullet1 = Bullet.instantiate()
+		get_node("BulletContainer").call_deferred("add_child", temp_bullet1)
+		temp_bullet1.bullet_damage = bullet_damage
+		temp_bullet1.global_position = aim.global_position
+
+		await get_tree().create_timer(0.1).timeout
+
+		if is_instance_valid(body) and enemies_in_range.has(body):
+			var temp_bullet2 = Bullet.instantiate()
+			get_node("BulletContainer").call_deferred("add_child", temp_bullet2)
+			temp_bullet2.bullet_damage = bullet_damage
+			temp_bullet2.global_position = aim2.global_position
+
 
 func _on_tower_radius_exited(body: Node2D) -> void:
 	if body.is_in_group("soldier"):
