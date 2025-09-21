@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cnt6dsxeenip6"]
+[gd_scene load_steps=10 format=3 uid="uid://cnt6dsxeenip6"]
 
 [ext_resource type="Script" uid="uid://dqjihj03hhix0" path="res://Scenes/ui.gd" id="1_jxero"]
 [ext_resource type="PackedScene" uid="uid://cm1ecc5b6ta7o" path="res://Scenes/T1TurrentUI.tscn" id="2_qdvrb"]
+[ext_resource type="PackedScene" uid="uid://dn26qch8hq73t" path="res://Scenes/T2TurrentUI.tscn" id="3_2246s"]
 [ext_resource type="Texture2D" uid="uid://cf454edfxwg6u" path="res://Assets/UI/arrow-left-svgrepo-com.svg" id="4_q7pk6"]
 
 [sub_resource type="Animation" id="Animation_smcll"]
@@ -130,6 +131,10 @@ offset_right = 239.0
 offset_bottom = 720.0
 
 [node name="Control" parent="CenterContainer/Panel/FlowContainer" instance=ExtResource("2_qdvrb")]
+custom_minimum_size = Vector2(110, 100)
+layout_mode = 2
+
+[node name="Control2" parent="CenterContainer/Panel/FlowContainer" instance=ExtResource("3_2246s")]
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

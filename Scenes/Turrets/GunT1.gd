@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var cost: int = 100
+
 var Bullet = preload("res://Scenes/Turrets/Missile.tscn")
 var bullet_damage = 5
 @onready var aim: Marker2D = $Turret/Marker2D

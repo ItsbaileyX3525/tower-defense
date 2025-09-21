@@ -1,6 +1,6 @@
 extends Panel
 
-@onready var tower_scene = preload("res://Assets/Tower/GunT1.tscn")
+@onready var tower_scene = preload("res://Assets/Tower/GunT2.tscn")
 var preview_tower: Node2D = null
 var can_place: bool = false
 var my_cost: int = 0
@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _on_gui_input(event: InputEvent) -> void:
 	var obstacles = get_node("/root/Map1/TowerExclusion")
-	var parent = get_parent().get_parent().get_parent().get_parent()
+	var parent = get_parent().get_parent().get_parent().get_parent() #Talk about tunneling
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if preview_tower == null:
 			preview_tower = tower_scene.instantiate()

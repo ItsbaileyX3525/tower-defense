@@ -12,4 +12,5 @@ func _process(delta: float) -> void:
 		queue_free()
 
 	if health <= 0:
+		Game.money += 20
 		get_parent().get_parent().queue_free()
