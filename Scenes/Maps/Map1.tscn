@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://qp036h3frxg2"]
+[gd_scene load_steps=31 format=4 uid="uid://qp036h3frxg2"]
 
 [ext_resource type="Texture2D" uid="uid://c5rb6g0ymws0o" path="res://Assets/Tilesets/terrainTiles_default.png" id="1_bp0wf"]
 [ext_resource type="Script" uid="uid://c1wd443pn0m27" path="res://Singletons/Map1.gd" id="1_g86u4"]
@@ -165,6 +165,9 @@ size = Vector2(73, 67)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i2ybl"]
 size = Vector2(28, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnymo"]
+size = Vector2(21, 137)
 
 [node name="Map1" type="Node2D"]
 script = ExtResource("1_g86u4")
@@ -530,8 +533,7 @@ shape = SubResource("RectangleShape2D_i2ybl")
 script = ExtResource("9_4r0br")
 
 [node name="Timer" type="Timer" parent="PathSpawner"]
-wait_time = 2.0
-autostart = true
+wait_time = 3.0
 
 [node name="Towers" type="Node2D" parent="."]
 
@@ -541,8 +543,11 @@ autostart = true
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 0
-offset_bottom = 1.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="CanvasLayer/Control"]
@@ -560,4 +565,62 @@ text = "MONEY: 150"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Panel2" type="Panel" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -89.5
+offset_right = 89.5
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Panel2"]
+layout_mode = 1
+offset_right = 586.422
+offset_bottom = 130.316
+scale = Vector2(0.3069462, 0.3069462)
+theme_override_font_sizes/font_size = 76
+text = "HEALTH: 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fail" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Fail"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = -6.0
+offset_right = 1669.0
+offset_bottom = 309.0
+scale = Vector2(0.43646267, 0.43646267)
+theme_override_font_sizes/font_size = 231
+text = "GAME OVER!"
+
+[node name="Button" type="Button" parent="CanvasLayer/Fail"]
+layout_mode = 0
+offset_left = 404.0
+offset_top = 225.0
+offset_right = 1106.0
+offset_bottom = 460.0
+scale = Vector2(0.37148547, 0.37148547)
+theme_override_font_sizes/font_size = 166
+text = "RESTART"
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1276, 119)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(7.5, 42.5)
+shape = SubResource("RectangleShape2D_qnymo")
+
 [connection signal="timeout" from="PathSpawner/Timer" to="PathSpawner" method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Fail/Button" to="." method="_on_button_pressed"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

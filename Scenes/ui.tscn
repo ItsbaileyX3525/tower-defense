@@ -137,6 +137,9 @@ layout_mode = 2
 [node name="Control2" parent="CenterContainer/Panel/FlowContainer" instance=ExtResource("3_2246s")]
 layout_mode = 2
 
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(887, 364)
 scale = Vector2(0.109744586, 0.109744586)

@@ -1,6 +1,6 @@
 extends Node
 
-var money: int = 200
+var money: int = 150
 var base_health: float = 100.
 
 func _process(_delta: float) -> void:
